@@ -1,0 +1,30 @@
+debug: false
+
+mybatis:
+  check-config-location: true
+  config-location: classpath:mybatis-config.xml
+server:
+  port: 9900
+
+spring:
+  rabbitmq:
+    host: 192.168.1.128
+    username: kje
+    password: 1q2w3e
+    port: 5672
+    virtual-host: vhost1  thymeleaf:    prefix: classpath:templates/
+    suffix: .html
+    mode: HTML
+    cache: false
+  devtools:    livereload:      enabled: true
+    
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://192.168.1.129:5432/postgres
+    hikari:
+      jdbc-url: jdbc:postgresql://192.168.1.129:5432/postgres
+      pool-name: p01_postgre
+      maximum-pool-size: 3
+      username: postgres
+      password: 1q2w3e
+      

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http:www.thymeleaf.org">
+
+<head>
+	<meta http-equiv="Content-Type/json" charset="UTF-8">
+	<title>InputCodeID</title>
+	<style>
+	@import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@700&display=swap');
+		body {
+			text-align: center;
+			font-family: 'Nanum Myeongjo', serif;
+			margin: 0;
+		}
+		header {
+			background-color: lightblue;
+		}
+		form{
+			margin: 0 auto;
+			width: fit-content;
+		}
+		td{
+			padding: 5px;
+		}
+		#btn{
+			background-color:lightsteelblue;
+			border: solid 1px black;
+			border-radius: 10%;
+		}
+	</style>
+</head>
+
+<body>
+	<header>
+		<h1>Input CodeID</h1>
+	</header>
+	<form th:action=@{/yn21/selectCommonID} method="get">
+		<table>
+			<tr>
+				<td>codeID</td>
+				<td><input type="text" name="codeID" th:value="${codeID}" placeholder="Input codeID"></td>
+			</tr>
+		</table>
+		<input id="btn" type="submit" value="submit" />
+	</form>
+</body>
+
+</html>

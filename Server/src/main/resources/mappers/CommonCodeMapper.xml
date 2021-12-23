@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="winirnd.yn21.server.dao.CommonDAO">
+	<select id="insertHashMap" parameterType="hashmap" resultType="hashmap">
+		INSERT INTO sensor(code_id, code_nm, upper_code_id,)
+		VALUES(#{codeID}, #{codeName}, #{upperID},)
+		ON CONFLICT (code_id) DO 
+			UPDATE SET code_nm = #{codeName}, upper_code_id = #{upperID}
+		RETURNING *
+	</select>
+
+	<select id="selectAll" resultType="hashmap">
+		SELECT * FROM sensor
+	</select>
+	
+	<select id="selectCodeID" parameterType="java.lang.String" resultType="hashmap">
+	SELECT * FROM sensor WHERE code_id = #{codeID}
+	</select>
+	
+	<select id="updateCommon" parameterType="hashmap" resultType="hashmap">
+	UPDATE sensor SET code_nm = #{codeName}, upper_code_id = #{upperID}
+					WHERE code_id = #{codeID}
+	RETURNING *
+	</select>
+	
+	<select id="updateDelete" parameterType="java.lang.String" resultType="hashmap">
+	UPDATE sensor SET WHERE code_id = #{codeID}
+	RETURNING *
+	</select>
+	
+	<delete id='deleteCodeID' parameterType="java.lang.String">
+	DELETE FROM sensor WHERE code_id = #{codeID}
+	</delete>
+	
+</mapper>

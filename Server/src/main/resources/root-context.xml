@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mybatis="http://mybatis.org/schema/mybatis-spring"
+	xsi:schemaLocation="https://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+		
+	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
+		<property name="driver" value="org.postgresql.Driver"/> <!-- driverClassName, jdbcUrl -->
+		<property name="url" value="jdbc:postgresql://192.168.33.71:5432/_kje"/>
+		<property name="username" value="kje"/>
+		<property name="password" value="1q2w3e"/>
+		<property name="driver.encoding" value="UTF8"/>
+		<property name="maximumPoolSize" value="3"/>
+	</bean>
+	
+	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" lazy-init="false">
+		<constructor-arg ref="hikariConfig"/>
+	</bean>
+	
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"/>
+		<property name="configLocation" value="classpath:mybatis-config.xml"/>
+		<property name="mapperLocations" value="classpath:mappers/*Mapper.xml"/>
+	</bean>
+	
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate" destroy-method="clearCache">
+		<constructor-arg name="sqlSessionFactory" ref="sqlSession"/>
+	</bean>
+	
+	<mybatis:scan base-package="winirnd.yn21.server.dao" />
+</beans>
